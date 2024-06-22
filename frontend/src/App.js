@@ -1,11 +1,14 @@
-import "./App.css";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+import WebFont from "webfontloader";
 import Header from "./component/layout/Header/Header.js";
 import Footer from "./component/layout/Footer/Footer.js";
-import Home from "./component/layout/Home/Home.js";
-import { Routes, Route } from "react-router-dom";
-import WebFont from "webfontloader";
-import React from "react";
-import { useEffect, useState } from "react";
+import Home from "./component/Home/Home.js";
+import Product from "./component/Home/Product.js";
+
+import "./App.css";
+
 
 function App() {
   useEffect(() => {
@@ -22,12 +25,17 @@ function App() {
 
   return (
     <div>
-      <Header />
-      <Home/>
-      <Footer />
+      <Router>
+        <Header />
+
         <Routes>
-          <Route exact path="/" component={Home} />
+          <Route path="/" element={<Home />} />
+  
+          <Route path="/product/:id/" element={<Product />} />
         </Routes>
+
+        <Footer />
+      </Router>
     </div>
   );
 }
